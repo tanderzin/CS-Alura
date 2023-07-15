@@ -86,3 +86,4 @@ void MostrarBandasRegistradas()
 
 
 }
+ExibirOpcoesDoMenu();
