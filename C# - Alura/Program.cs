@@ -44,7 +44,7 @@ void ExibirOpcoesDoMenu()
             AvaliarUmaBanda();
             break;
         case 4:
-            Console.WriteLine("Você escolheu a opção: " + opcaoEscolhidaNumerica);
+            MediaDaBanda();
             break;
         case -1:
             Console.WriteLine("Tchau tchau :)");
@@ -121,19 +121,47 @@ void AvaliarUmaBanda()
         int nota = int.Parse(Console.ReadLine()!);
         bandasRegistradas[nomeDaBanda].Add(nota);
         Console.WriteLine($"\nA nota {nota} foi registrada com sucesso para a banda {nomeDaBanda}!");
-        Thread.Sleep(4000);
+        Thread.Sleep(3000);
         LimpaTela();
         ExibirOpcoesDoMenu();
     }
     else
     {
         Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-        Console.WriteLine("Digite uma tecla para votar ao menu principal");
+        Console.WriteLine("Digite uma tecla para voltar ao menu principal");
         Console.ReadKey();
         LimpaTela();
         ExibirOpcoesDoMenu();
     }
 
+}
+
+void MediaDaBanda()
+{
+    LimpaTela();
+    ExibirTituloDaOpcao("Média Da Banda");
+    Console.Write("Digite qual banda deseja ver a média: ");
+    string nomeDaBanda = Console.ReadLine()!; 
+    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    {
+        List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];
+        LimpaTela();
+        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {notasDaBanda.Average()}.");
+
+        Console.WriteLine("\nDigite uma tecla para voltar ao menu principal.");
+        Console.ReadKey();
+        LimpaTela();
+        ExibirOpcoesDoMenu();
+    }
+    else
+    {
+        LimpaTela();
+        Console.WriteLine($"\nA Banda {nomeDaBanda} não foi encontrada!");
+        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal");
+        Console.ReadKey();
+        LimpaTela();
+        ExibirOpcoesDoMenu();
+    }
 }
 
 ExibirOpcoesDoMenu();
